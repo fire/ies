@@ -38,6 +38,8 @@
 #include <assert.h>
 #include <algorithm>
 #include <functional>
+#include <limits>
+#include <cmath> 
 
 IESFileInfo::IESFileInfo()
 	: _cachedIntegral(std::numeric_limits<float>::max())
@@ -124,11 +126,12 @@ IESLoadHelper::load(const std::string& data, IESFileInfo& info)
 	}
 
 	this->getFloat(dataPos, dataPos, info.totalLumens);
-	if (info.totalLumens < 0)
-	{
-		info._error = "TotalLumens is not positive number";
-		return false;
-	}
+	// TODO: Godot Engine: fire 2022-08-02 
+	// if (info.totalLumens < 0)
+	// {
+	// 	info._error = "TotalLumens is not positive number";
+	// 	return false;
+	// }
 
 	this->getFloat(dataPos, dataPos, info.candalaMult);
 	if (info.candalaMult < 0)
